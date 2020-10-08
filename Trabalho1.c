@@ -10,11 +10,11 @@
 #include <time.h>
 #define hash "d41d8cd98f00b204e9800998ecf8427e" // professora essa é a senha!!!
 
-char valorCheque[20], imprimir[200], imprimirMoedas[200];
-int cont = 0, contMoeda = 0, b;
+char valorCheque[20], valorDinheiro[20], valorMoedas[20], imprimir[200], imprimirMoedas[200];
+int cont = 0, contMoeda = 0, b, a;
 
-void coin_und(char moeda) {
-    switch(moeda) {
+void coin_und() {
+    switch(valorMoedas[a]) {
         case '1': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " um "); break;
         case '2': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " dois "); break;
         case '3': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " tres "); break;
@@ -27,9 +27,9 @@ void coin_und(char moeda) {
     }
 }
 
-void coin_dez(char moeda) {
-    if(moeda == '1') {
-        switch(moeda) {
+void coin_dez() {
+    if(valorMoedas[a] == '1') {
+        switch(valorMoedas[a - 1]) {
             case '0': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " dez "); break;
             case '1': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " onze "); break;
             case '2': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " doze "); break;
@@ -42,7 +42,7 @@ void coin_dez(char moeda) {
             case '9': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " dezenove "); break;
         }
     } else {
-        switch(moeda) {
+        switch(valorMoedas[a]) {
             case '2': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " vinte "); break;
             case '3': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " trinta "); break;
             case '4': if(contMoeda>=2) strcat(imprimirMoedas, "e"); strcat(imprimirMoedas, " quarenta "); break;
@@ -56,22 +56,22 @@ void coin_dez(char moeda) {
 }
 
 void um() {
-    switch(valorCheque[b]) {
-        case '1': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " um "); break;
-        case '2': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " dois "); break;
-        case '3': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " tres "); break;
-        case '4': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " quatro "); break;
-        case '5': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " cinco "); break;
-        case '6': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " seis "); break;
-        case '7': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " sete "); break;
-        case '8': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " oito "); break;
-        case '9': if(cont>=2 && valorCheque[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " nove "); break;
+    switch(valorDinheiro[b]) {
+        case '1': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " um "); break;
+        case '2': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " dois "); break;
+        case '3': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " tres "); break;
+        case '4': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " quatro "); break;
+        case '5': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " cinco "); break;
+        case '6': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " seis "); break;
+        case '7': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " sete "); break;
+        case '8': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " oito "); break;
+        case '9': if(cont>=2 && valorDinheiro[b + 1] != '0') strcat(imprimir, "e"); strcat(imprimir, " nove "); break;
     }
 }
 
 void dois() {
-    if(valorCheque[b] == '1') {
-        switch(valorCheque[b - 1]) {
+    if(valorDinheiro[b] == '1') {
+        switch(valorDinheiro[b - 1]) {
             case '0': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " dez "); break;
             case '1': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " onze "); break;
             case '2': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " doze "); break;
@@ -84,7 +84,7 @@ void dois() {
             case '9': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " dezenove "); break;
         }
     } else {
-        switch(valorCheque[b]) {
+        switch(valorDinheiro[b]) {
             case '2': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " vinte "); break;
             case '3': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " trinta "); break;
             case '4': if(cont>=3) strcat(imprimir, "e"); strcat(imprimir, " quarenta "); break;
@@ -98,8 +98,8 @@ void dois() {
 }
 
 void tres() {
-    switch(valorCheque[b]) {
-        case '1': if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir, " cem "); else strcat(imprimir, " cento "); break;
+    switch(valorDinheiro[b]) {
+        case '1': if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir, " cem "); else strcat(imprimir, " cento "); break;
         case '2': if(cont>=4) strcat(imprimir, "e"); strcat(imprimir, " duzentos "); break;
         case '3': if(cont>=4) strcat(imprimir, "e"); strcat(imprimir, " trezentos "); break;
         case '4': if(cont>=4) strcat(imprimir, "e"); strcat(imprimir, " quatrocentos "); break;
@@ -110,8 +110,9 @@ void tres() {
         case '9': if(cont>=4) strcat(imprimir, "e"); strcat(imprimir, " novecentos "); break;
     }
 }
+
 void quatro() {
-    switch(valorCheque[b]) {
+    switch(valorDinheiro[b]) {
         case '1': if(cont>=5) strcat(imprimir, "e"); strcat(imprimir, " um mil "); break;
         case '2': if(cont>=5) strcat(imprimir, "e"); strcat(imprimir, " dois mil "); break;
         case '3': if(cont>=5) strcat(imprimir, "e"); strcat(imprimir, " tres mil "); break;
@@ -123,13 +124,14 @@ void quatro() {
         case '9': if(cont>=5) strcat(imprimir, "e"); strcat(imprimir, " nove mil "); break;
     }
 }
+
 void cinco() {
-    if(valorCheque[b-1] == '0' && valorCheque[b] == '1') {
-        switch(valorCheque[b]) {
+    if(valorDinheiro[b-1] == '0' && valorDinheiro[b] == '1') {
+        switch(valorDinheiro[b]) {
             case 1: strcat(imprimir, " dez mil "); break;
         }
-    } else if(valorCheque[b] == '1') {
-        switch(valorCheque[b-1]) {
+    } else if(valorDinheiro[b] == '1') {
+        switch(valorDinheiro[b-1]) {
             case '1': b--; if(cont>=6) strcat(imprimir,"e"); strcat(imprimir," onze mil "); break;
             case '2': b--; if(cont>=6) strcat(imprimir,"e"); strcat(imprimir," doze mil "); break;
             case '3': b--; if(cont>=6) strcat(imprimir,"e"); strcat(imprimir," treze mil "); break;
@@ -142,36 +144,38 @@ void cinco() {
         }
     }
     else{ 
-        switch(valorCheque[b]){
-            case '2': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," vinte "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '3': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," trinta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '4': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," quarenta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '5': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," cinquenta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '6': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," sessenta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '7': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," setenta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '8': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," oitenta "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
-            case '9': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," noventa "); if((valorCheque[b-1])=='0') strcat(imprimir,"mil "); break;
+        switch(valorDinheiro[b]){
+            case '2': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," vinte "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '3': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," trinta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '4': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," quarenta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '5': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," cinquenta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '6': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," sessenta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '7': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," setenta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '8': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," oitenta "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
+            case '9': if(cont>=7) strcat(imprimir,"e"); strcat(imprimir," noventa "); if((valorDinheiro[b-1])=='0') strcat(imprimir,"mil "); break;
       }           
     }
 
 }
+
 void seis() {
-    switch(valorCheque[b]) {
-        case '1': if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir, " cem mil"); else strcat(imprimir, " cento "); break;
-        case '2':strcat(imprimir," duzentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '3':strcat(imprimir," trezentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '4':strcat(imprimir," quatrocentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '5':strcat(imprimir," quinhentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '6':strcat(imprimir," seiscentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '7':strcat(imprimir," setecentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '8':strcat(imprimir," oitocentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
-        case '9':strcat(imprimir," novecentos "); if(valorCheque[b - 1] == '0' && valorCheque[b - 2] == '0') strcat(imprimir,"mil ");break;
+    switch(valorDinheiro[b]) {
+        case '1': if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir, " cem mil"); else strcat(imprimir, " cento "); break;
+        case '2':strcat(imprimir," duzentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '3':strcat(imprimir," trezentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '4':strcat(imprimir," quatrocentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '5':strcat(imprimir," quinhentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '6':strcat(imprimir," seiscentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '7':strcat(imprimir," setecentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '8':strcat(imprimir," oitocentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
+        case '9':strcat(imprimir," novecentos "); if(valorDinheiro[b - 1] == '0' && valorDinheiro[b - 2] == '0') strcat(imprimir,"mil ");break;
     }
 
 }
+
 void sete() {
     if(cont>=7)
-         switch(valorCheque[b]) {
+         switch(valorDinheiro[b]) {
             case '1': if(cont>=8) strcat(imprimir,"e"); strcat(imprimir," um milhao "); break;
             case '2': if(cont>=8) strcat(imprimir,"e"); strcat(imprimir," dois milhoes "); break;
             case '3': if(cont>=8) strcat(imprimir,"e"); strcat(imprimir," tres milhoes "); break;
@@ -184,14 +188,15 @@ void sete() {
         }     
 
 }
+
 void oito() {
-    if(valorCheque[b - 1] == '0' && valorCheque[b] == '1') {
-         switch(valorCheque[b]){
+    if(valorDinheiro[b - 1] == '0' && valorDinheiro[b] == '1') {
+         switch(valorDinheiro[b]){
             case '1': strcat(imprimir," dez milhoes "); break;       
         }
      }
-     else if (valorCheque[b] == '1') {          
-         switch(valorCheque[b - 1]) {
+     else if (valorDinheiro[b] == '1') {          
+         switch(valorDinheiro[b - 1]) {
             case '1': b--; if(cont>=9) strcat(imprimir,"e"); strcat(imprimir," onze milhoes "); break;
             case '2': b--; if(cont>=9) strcat(imprimir,"e"); strcat(imprimir," doze milhoes "); break;
             case '3': b--; if(cont>=9) strcat(imprimir,"e"); strcat(imprimir," treze milhoes "); break;
@@ -204,30 +209,31 @@ void oito() {
         }
     }
     else { 
-        switch(valorCheque[b]){
-            case '2': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," vinte "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '3': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," trinta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '4': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," quarenta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '5': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," cinquenta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '6': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," sessenta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '7': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," setenta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '8': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," oitenta "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
-            case '9': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," noventa "); if((valorCheque[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+        switch(valorDinheiro[b]){
+            case '2': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," vinte "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '3': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," trinta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '4': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," quarenta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '5': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," cinquenta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '6': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," sessenta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '7': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," setenta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '8': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," oitenta "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
+            case '9': if(cont>8) strcat(imprimir,"e"); strcat(imprimir," noventa "); if((valorDinheiro[b - 1]) == '0') strcat(imprimir, "milhoes "); break;
         } 
     }
 
 }
+
 void nove() {
-    switch(valorCheque[b]) {
-        case '1':if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir," cem milhoes"); else strcat(imprimir," cento "); break;//verifica caso dgito seja um
-        case '2':strcat(imprimir," duzentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '3':strcat(imprimir," trezentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '4':strcat(imprimir," quatrocentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '5':strcat(imprimir," quinhentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '6':strcat(imprimir," seiscentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '7':strcat(imprimir," setecentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '8':strcat(imprimir," oitocentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
-        case '9':strcat(imprimir," novecentos ");if(valorCheque[b - 1]=='0'&&valorCheque[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+    switch(valorDinheiro[b]) {
+        case '1':if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir," cem milhoes"); else strcat(imprimir," cento "); break;//verifica caso dgito seja um
+        case '2':strcat(imprimir," duzentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '3':strcat(imprimir," trezentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '4':strcat(imprimir," quatrocentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '5':strcat(imprimir," quinhentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '6':strcat(imprimir," seiscentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '7':strcat(imprimir," setecentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '8':strcat(imprimir," oitocentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
+        case '9':strcat(imprimir," novecentos ");if(valorDinheiro[b - 1]=='0'&&valorDinheiro[b - 2]=='0') strcat(imprimir,"milhoes ");break;
     }
 
 }
@@ -277,27 +283,39 @@ void getSenha() {
     }
 }
 
-void inverter(char string[20]){
-  char aux;
-  int x,y,cont2;
-  cont2=strlen(string);
-  y=cont2;
-  for (x=0;x<cont2/2;x++){
-        y--;  
-      aux=valorCheque[x];
-      valorCheque[x]=valorCheque[y];
-      valorCheque[y]=aux;
- }
+void inverterDinheiro(char string[20]){
+    char aux;
+    int x, y, cont2;
+    cont2 = strlen(string);
+    y = cont2;
+    for (x = 0; x < cont2 / 2; x++){
+            y--;  
+            aux = valorDinheiro[x];
+            valorDinheiro[x] = valorDinheiro[y];
+            valorDinheiro[y] = aux;
+    }
+}
+
+void inverterMoedas(char string[20]){
+    char aux;
+    int x, y, cont2;
+    cont2 = strlen(string);
+    y = cont2;
+    for (x = 0; x < cont2 / 2; x++){
+            y--;  
+            aux = valorMoedas[x];
+            valorMoedas[x] = valorMoedas[y];
+            valorMoedas[y] = aux;
+    }
 }
 
 int main() {
     fflush(stdin);
     double valor;
-    int op = 4;
+    int op = -1;
     //getSenha();
-
     while(op != 3) {
-        printf("\n\n\t\tBEM VINDO");
+        printf("\n\n\n\t\tBEM VINDO\n");
         printf("\n1 - Receber dinheiro em notas/moedas");
         printf("\n2 - Preencher cheque");
         printf("\n3 - Sair do sistema");
@@ -308,23 +326,42 @@ int main() {
             printf("Comando errado. Digite novamente: ");
             scanf("%d", &op);
         }
+
         switch(op) {
-            case 1: printf("\n\nDigite o valor: ");
+            case 1: printf("\nDigite o valor: ");
                     scanf("%lf", &valor);
                     geraNotas(valor);
                     break;
-            case 2: printf("\n\nDigite o valor: ");
+            case 2: printf("\nDigite o valor: ");
                     scanf("%s", valorCheque); // prof, se for colocar moeda coloque com um . ou ,
-                    inverter(valorCheque);
-                    cont = strlen(valorCheque);
-                    char valorMoeda[10], valorDinheiro[10];
-                    if(valorCheque[0]=='0' && cont <=1 ){
+                    int cont_cheque = strlen(valorCheque);
+
+                    // Separa bits e centBits 
+                    for(int i = 0; i <= cont_cheque; i++) {
+                        if(valorCheque[i] == ',' || valorCheque[i] == '.'){
+                            if(valorCheque[i + 1] != 0) {
+                                valorMoedas[0] = valorCheque[i + 1];
+                            } else {
+                                valorMoedas[0] = '0';
+                            }
+                            if(valorCheque[i + 2] != 0) {
+                                valorMoedas[1] = valorCheque[i + 2];
+                            } else {
+                                valorMoedas[1] = '0';
+                            }
+                            break;
+                        } 
+                        valorDinheiro[i] = valorCheque[i];
+                    }
+
+                    cont = strlen(valorDinheiro);
+                    inverterDinheiro(valorDinheiro);
+
+                    if(valorDinheiro[0]=='0' && cont <=1 ){
                         strcat(imprimir, "Zero");
                     }
+
                     for (b = cont; b>=0; b--) {
-                        if(valorCheque[b] == ',' || valorCheque[b] == '.'){
-                            break;
-                        }
                         switch(b) {
                             case 0: um(); break;
                             case 1: dois(); break;
@@ -337,27 +374,33 @@ int main() {
                             case 8: nove(); break;
                         }
                     }
-                    for(int a = 0; a <= cont; a++) {
-                        if(valorCheque[a] == '.' || valorCheque[a] == ',') {
-                            if(valorCheque[a - 1] != 0) {
-                                coin_und(valorCheque[a - 1]);
-                            }
-                            if(valorCheque[a - 2] != 0) {
-                                coin_dez(valorCheque[a - 2]);
-                            }
+
+                    contMoeda = strlen(valorMoedas);
+                    inverterMoedas(valorMoedas);
+                    for(a = contMoeda; a >= 0; a--) {
+                        switch(a) {
+                            case 0: coin_und(); break;
+                            case 1: coin_dez(); break;
                         }
                     }
+
+                    // Verifica se tem moeda inclusa ou não
                     if(strlen(imprimirMoedas) != 0) {
-                        printf("\n%sBits e %s CentBits\n\n", imprimir, imprimirMoedas);
+                        printf("\n%sBits %sCentBits\n\n", imprimir, imprimirMoedas);
                     } else {
                         printf("\n%sBits\n\n", imprimir);
                     }
+
+                    // Zera o valor da string novamente
                     strcpy(imprimir, "");
                     strcpy(imprimirMoedas, "");
+
+                    // Data pelo localtime
                     time_t mytime;
                     mytime = time(NULL);
                     struct tm tm = *localtime(&mytime);
-                    printf("Data: %d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+                    printf("Data de preenchimento: %d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+
                     break;
             case 3: exit(1);
         }
